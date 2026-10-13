@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven-3'
-    }
-
     stages {
 
         stage('Java Check') {
@@ -15,13 +11,13 @@ pipeline {
 
         stage('Maven Check') {
             steps {
-                bat 'mvn -version'
+                bat '"C:\\Users\\STUDENT\\Downloads\\apache-maven-3.10.0-bin\\apache-maven-3.10.0\\bin\\mvn.cmd" -version'
             }
         }
 
         stage('Maven Build') {
             steps {
-                bat 'mvn clean package'
+                bat '"C:\\Users\\STUDENT\\Downloads\\apache-maven-3.10.0-bin\\apache-maven-3.10.0\\bin\\mvn.cmd" clean package'
             }
         }
     }
