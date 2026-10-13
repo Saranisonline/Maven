@@ -7,19 +7,19 @@ pipeline {
 
     stages {
 
-        stage('Check Java') {
+        stage('Java Check') {
             steps {
                 bat 'java -version'
             }
         }
 
-        stage('Check Maven') {
+        stage('Maven Check') {
             steps {
                 bat 'mvn -version'
             }
         }
 
-        stage('Build') {
+        stage('Maven Build') {
             steps {
                 bat 'mvn clean package'
             }
