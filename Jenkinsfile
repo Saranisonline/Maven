@@ -2,29 +2,22 @@ pipeline {
     agent any
 
     tools {
-        jdk 'JDK-17'
+        jdk 'jdk-21.0.12'
         maven 'Maven-3'
     }
 
     stages {
 
-        stage('Checkout') {
+        stage('Check Java and Maven') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/Saranisonline/Maven.git'
+                bat 'java -version'
+                bat 'mvn -version'
             }
         }
 
-        stage('Build & Test') {
+        stage('Build') {
             steps {
-                sh 'mvn clean package'
-            }
-        }
-
-        stage('Archive Artifact') {
-            steps {
-                archiveArtifacts artifacts: 'target/*.jar',
-                                 fingerprint: true
+                bat 'mvn clean package'
             }
         }
     }
@@ -36,10 +29,6 @@ pipeline {
 
         failure {
             echo 'Maven build failed!'
-        }
-
-        always {
-            junit 'target/surefire-reports/*.xml'
         }
     }
 }
