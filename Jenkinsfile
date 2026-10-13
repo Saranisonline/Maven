@@ -1,16 +1,16 @@
 pipeline {
     agent any
 
-    tools {
-        jdk 'jdk-21.0.12'
-        maven 'Maven-3'
-    }
-
     stages {
 
-        stage('Check Java and Maven') {
+        stage('Check Java') {
             steps {
                 bat 'java -version'
+            }
+        }
+
+        stage('Check Maven') {
+            steps {
                 bat 'mvn -version'
             }
         }
@@ -24,11 +24,11 @@ pipeline {
 
     post {
         success {
-            echo 'Maven build completed successfully!'
+            echo 'BUILD SUCCESS!'
         }
 
         failure {
-            echo 'Maven build failed!'
+            echo 'BUILD FAILED!'
         }
     }
 }
