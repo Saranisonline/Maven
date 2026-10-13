@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven-3'
+    }
+
     stages {
 
         stage('Check Java') {
@@ -19,16 +23,6 @@ pipeline {
             steps {
                 bat 'mvn clean package'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'BUILD SUCCESS!'
-        }
-
-        failure {
-            echo 'BUILD FAILED!'
         }
     }
 }
